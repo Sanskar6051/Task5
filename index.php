@@ -1,29 +1,3 @@
-<?php
-$host = "localhost"; 
-$user = "root"; 
-$password = ""; 
-$dbname = "imgdb"; 
-
-$conn = mysqli_connect($host, $user, $password, $dbname);
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-$sql = "SELECT Image FROM forimg";
-$result = mysqli_query($conn, $sql);
-$num_rows = mysqli_num_rows($result);
-$num_rows -= 1;
-
-if (mysqli_num_rows($result) > 0) {
-    $images = array();
-    while ($row = mysqli_fetch_assoc($result)) {
-        $images[] = $row['Image'];
-    }
-} else {
-    echo "No images found in the database.";
-}
-
-?>
 <html>
 <head>
     <title>carousel</title>
@@ -32,13 +6,10 @@ if (mysqli_num_rows($result) > 0) {
 </head>
 <body>
      <main>
-
-     <?php
-        
-        foreach ($images as $image) {
-            echo '<img src="' . $image . '" alt="" class="slide">';
-        }
-        ?>
+        <img src="https://picsum.photos/id/237/1000/500" alt=""class="slide">
+        <img src="https://picsum.photos/id/202/1000/500" alt=""class="slide">
+        <img src="https://picsum.photos/id/238/1000/500" alt=""class="slide">
+        <img src="https://picsum.photos/id/239/1000/500" alt=""class="slide">
     </main>
     <div class="nav">
         <button onclick="goPrev()">
@@ -63,7 +34,7 @@ if (mysqli_num_rows($result) > 0) {
     const goPrev = () =>{
         if(counter==0)
         {
-            counter=num
+            counter=3
         }
         else{
             counter--
@@ -72,7 +43,7 @@ if (mysqli_num_rows($result) > 0) {
     }
 
     const goNext = () =>{
-        if(counter==num)
+        if(counter==3)
         {
             counter=0
         }
